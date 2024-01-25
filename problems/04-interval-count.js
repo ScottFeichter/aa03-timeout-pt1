@@ -18,17 +18,23 @@ intervalCount(function() {
 
 function intervalCount(cb, delay, amount) {
   debugger;
-  let counter = 0;
-  setInterval(cb, delay);
-  if (counter === amount) {
-    clearInterval(intervalID);
-  }
+  let intervalID = setInterval(() => {
+    cb();
+    amount -= 1
+    if (amount === 0) {
+      clearInterval(intervalID)
+    }
+   }, delay);
+
 }
 
 intervalCount(
   function () {
+    // if (counter === amount) {
+    //   clearInterval(intervalID);
+    // }
     console.log("hi");
-    counter++;
+    // counter++;
   },
   500,
   3
